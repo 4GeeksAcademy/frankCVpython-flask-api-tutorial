@@ -8,13 +8,13 @@ def hello_world():
     json_text = jsonify(todos)
     return json_text
 
-@app.post('/todos')
+@app.route('/todos', methods=['POST'])
 def add_new_todo():    
     request_body = request.get_json(force=True)
     todos.append(request_body)   
     return todos
 
-@app.delete('/todos/<int:position>')
+@app.route('/todos/<int:position>',methods=['DELETE'])
 def delete_todo(position):    
     todos.pop(position)
     print('This is the position to delete: ',position)
